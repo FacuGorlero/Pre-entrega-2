@@ -8,7 +8,7 @@ router.get('/', async (req, res) => {
 
     const product = await productos.getProducts();
     res.render('home',{
-        title: 'ComercioSport Club',
+        title: 'SportClub',
         product,
     })
 
@@ -18,7 +18,7 @@ router.get('/', async (req, res) => {
 router.get('/realtimeproducts', async (req, res) => {
     const product = await productos.getProducts();
     res.render('realtimeproducts',{
-        title: 'ComercioSport Club',
+        title: 'SportClub',
         product,
     });
 })
