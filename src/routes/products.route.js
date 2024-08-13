@@ -74,20 +74,24 @@ router.put('/:id', async (req, res) => {
     });
 
 
-router.delete('/:id', async (req, res)=> {
-    const id = req.params.id +1;
-    const resp = await productos.deleteProduct(id);
-
-    if (typeof (resp) === "string") {
-        res.status(400).json({
-          status: "fail",
-          data: resp
-      })} else {  
-        res.status(200).json({
-          status: "ok",
-          data: resp
-      })}
-
+    router.delete('/:id', async (req, res)=> {
+      try{
+        const id = parseInt(req.params.id, 10);
+        const resp = await productos.deleteProduct(id);
+    
+        if (typeof (resp) === "string") {
+            res.status(400).json({
+              status: "fail",
+              data: resp
+          })} else {  
+            res.status(200).json({
+              status: "ok",
+              data: resp
+          })}
+        }catch (error) {
+          console.error('Error en el endpoint /delete:', error);
+          res.status(500).send('Error al procesar la solicitud');
+      }
 
 
 });
